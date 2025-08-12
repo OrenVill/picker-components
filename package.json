@@ -1,0 +1,34 @@
+{
+  "name": "picker-components",
+  "version": "1.0.0",
+  "description": "Modern, reusable time and date picker components",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "timepicker",
+    "datepicker",
+    "circular",
+    "ui",
+    "components",
+    "bootstrap",
+    "modern",
+    "calendar"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {},
+  "peerDependencies": {
+    "bootstrap": "^5.0.0"
+  },
+  "files": [
+    "circular-time-picker.html",
+    "circular-time-picker.css",
+    "circular-time-picker.js",
+    "simple-date-picker.html",
+    "simple-date-picker.css",
+    "simple-date-picker.js",
+    "README.md"
+  ]
+}

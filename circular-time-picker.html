@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CircularTimePicker</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="circular-time-picker.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Circular Time Picker</h1>
+        <p>A modern 24-hour circular time picker with dual concentric circles.</p>
+        
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Demo</h3>
+                <div class="time-input-container mb-3">
+                    <div class="time-input-display" id="timeDisplay1" onclick="openTimePicker('timeInput1')">
+                        Select time...
+                    </div>
+                    <button class="time-input-btn" onclick="openTimePicker('timeInput1')">
+                        <i class="bi bi-clock"></i>
+                    </button>
+                    <input type="hidden" id="timeInput1" />
+                </div>
+                
+                <div class="time-input-container mb-3">
+                    <div class="time-input-display" id="timeDisplay2" onclick="openTimePicker('timeInput2')">
+                        Select time...
+                    </div>
+                    <button class="time-input-btn" onclick="openTimePicker('timeInput2')">
+                        <i class="bi bi-clock"></i>
+                    </button>
+                    <input type="hidden" id="timeInput2" />
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <h3>Features</h3>
+                <ul>
+                    <li>24-hour format (no AM/PM)</li>
+                    <li>Dual concentric circles</li>
+                    <li>Inner circle: 13-24 hours</li>
+                    <li>Outer circle: 1-12 hours</li>
+                    <li>5-minute interval selection</li>
+                    <li>Auto-progression from hours to minutes</li>
+                    <li>Theme-aware styling</li>
+                    <li>Smooth animations</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Circular Time Picker Overlay -->
+    <div class="circular-timepicker-overlay" id="circularTimePicker">
+        <div class="circular-timepicker">
+            <div class="time-display" id="timeDisplay">12:00</div>
+            
+            <!-- Mode Toggle -->
+            <div class="time-mode-toggle">
+                <button class="time-mode-btn active" id="hourModeBtn" onclick="setTimeMode('hours')">
+                    <i class="bi bi-clock"></i> Hours
+                </button>
+                <button class="time-mode-btn" id="minuteModeBtn" onclick="setTimeMode('minutes')">
+                    <i class="bi bi-stopwatch"></i> Minutes
+                </button>
+            </div>
+            
+            <div class="clock-face" id="clockFace">
+                <div class="clock-center"></div>
+                
+                <!-- Only show relevant numbers based on mode -->
+                <div class="clock-numbers-container" id="clockNumbers">
+                    <!-- Numbers will be dynamically generated -->
+                </div>
+            </div>
+            
+            <!-- Instructions -->
+            <div class="time-picker-instructions">
+                <span id="modeInstructions">Select hour (1-24)</span>
+            </div>
+            
+            <div class="timepicker-actions">
+                <button class="timepicker-btn clear" onclick="clearTime()">CLEAR</button>
+                <button class="timepicker-btn cancel" onclick="closeTimePicker()">CANCEL</button>
+                <button class="timepicker-btn ok" onclick="confirmTime()">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="circular-time-picker.js"></script>
+</body>
+</html>

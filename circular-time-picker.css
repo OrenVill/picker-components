@@ -1,0 +1,287 @@
+/* ===== CIRCULAR TIME PICKER CSS ===== */
+:root {
+    --bs-primary: #0d6efd;
+    --bs-primary-rgb: 13, 110, 253;
+    --bs-secondary: #6c757d;
+    --bs-success: #198754;
+    --bs-danger: #dc3545;
+    --bs-body-bg: #ffffff;
+    --bs-body-color: #212529;
+    --bs-border-color: #dee2e6;
+    --bs-light: #f8f9fa;
+}
+
+[data-bs-theme="dark"] {
+    --bs-body-bg: #212529;
+    --bs-body-color: #dee2e6;
+    --bs-border-color: #495057;
+    --bs-light: #343a40;
+}
+
+.circular-timepicker-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.circular-timepicker-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.circular-timepicker {
+    background: var(--bs-body-bg);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    width: 380px;
+    text-align: center;
+    transform: scale(0.8);
+    transition: transform 0.3s ease;
+}
+
+.circular-timepicker-overlay.show .circular-timepicker {
+    transform: scale(1);
+}
+
+.time-display {
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--bs-primary);
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+/* Mode Toggle Buttons */
+.time-mode-toggle {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.time-mode-btn {
+    padding: 10px 20px;
+    border: 2px solid var(--bs-border-color);
+    background: var(--bs-body-bg);
+    color: var(--bs-body-color);
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+}
+
+.time-mode-btn.active {
+    background: var(--bs-primary);
+    color: white;
+    border-color: var(--bs-primary);
+}
+
+.time-mode-btn:hover:not(.active) {
+    border-color: var(--bs-primary);
+    color: var(--bs-primary);
+}
+
+.clock-face {
+    position: relative;
+    width: 325px;
+    height: 325px;
+    margin: 0 auto 25px;
+    border: 2px solid var(--bs-border-color);
+    border-radius: 50%;
+    background: var(--bs-body-bg);
+    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.clock-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    background: var(--bs-primary);
+    border-radius: 50%;
+    z-index: 10;
+}
+
+.clock-numbers-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.clock-number {
+    position: absolute;
+    font-weight: 600;
+    color: var(--bs-body-color);
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    user-select: none;
+    background: var(--bs-body-bg);
+    border: 1px solid var(--bs-border-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Inner circle numbers (13-24) - same style as outer */
+.clock-number.inner-circle {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* Outer circle numbers (1-12) - same style as inner */
+.clock-number.outer-circle {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* Minute numbers - same style */
+.clock-number.minute-circle {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.clock-number:hover {
+    background: var(--bs-primary);
+    color: white;
+    transform: scale(1.1);
+    border-color: var(--bs-primary);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.clock-number.selected {
+    background: var(--bs-primary);
+    color: white;
+    transform: scale(1.1);
+    border-color: var(--bs-primary);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Instructions */
+.time-picker-instructions {
+    margin: 15px 0 20px;
+    color: var(--bs-secondary);
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px 16px;
+    background: var(--bs-light);
+    border-radius: 20px;
+    border: 1px solid var(--bs-border-color);
+}
+
+.timepicker-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.timepicker-btn {
+    flex: 1;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.9rem;
+}
+
+.timepicker-btn.clear {
+    background: var(--bs-secondary);
+    color: white;
+}
+
+.timepicker-btn.cancel {
+    background: var(--bs-danger);
+    color: white;
+}
+
+.timepicker-btn.ok {
+    background: var(--bs-success);
+    color: white;
+}
+
+.timepicker-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Time input with picker button */
+.time-input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.time-input-btn {
+    background: var(--bs-primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.85rem;
+}
+
+.time-input-btn:hover {
+    background: var(--bs-primary);
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+.time-input-display {
+    background: var(--bs-body-bg);
+    border: 2px solid var(--bs-border-color);
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 0.95rem;
+    color: var(--bs-body-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 1;
+    text-align: center;
+}
+
+.time-input-display:hover {
+    border-color: var(--bs-primary);
+}
+
+/* Dark mode adjustments */
+[data-bs-theme="dark"] .circular-timepicker-overlay {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+[data-bs-theme="dark"] .clock-number {
+    background: var(--bs-body-bg);
+    border-color: var(--bs-border-color);
+    color: var(--bs-body-color);
+}
+
+[data-bs-theme="dark"] .time-picker-instructions {
+    background: var(--bs-light);
+    border-color: var(--bs-border-color);
+}
